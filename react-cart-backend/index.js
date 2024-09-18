@@ -9,6 +9,7 @@ const cartcollection = require("./Database");
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use(express.static('Images'))
 
 mongoose.connect(process.env.mongouri, { useNewUrlParser: true, useUnifiedTopology: true, })
     .then(() => {
