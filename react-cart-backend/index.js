@@ -9,6 +9,7 @@ const cartcollection = require("./Database");
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use(express.static('Images'))
 
 mongoose.connect(process.env.mongouri, { useNewUrlParser: true, useUnifiedTopology: true, })
     .then(() => {
@@ -36,6 +37,12 @@ app.post('/upload', upload.single('image'), async (req, res) => {
     .catch(err => res.json(err))
     console.log(req.file)
     
+})
+
+app.get('/getitems', async (req,res)=>{
+    cartcollection.find()
+    .then(items => res.json(items))
+    .catch(err => res.json(err))
 })
 
 app.listen(3001, () => {
