@@ -40,6 +40,12 @@ app.post('/upload', upload.single('image'), async (req, res) => {
     }
 })
 
+app.get('/getitems', async (req,res)=>{
+    cartcollection.find()
+    .then(items => res.json(items))
+    .catch(err => res.json(err))
+})
+
 app.listen(3001, () => {
     console.log("Sever is Running");
 })
