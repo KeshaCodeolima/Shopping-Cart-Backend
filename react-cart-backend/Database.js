@@ -6,5 +6,5 @@ const cartdetails = new mongoose.Schema({
     description:String,
     image:String, 
 });
-const carcollection = mongoose.model("ShoppingCart", cartdetails)
-module.exports = carcollection
+const cartcollection = mongoose.model("ShoppingCart", cartdetails)
+module.exports = cartcollection
