@@ -34,16 +34,23 @@ const upload = multer({ storage: storage })
 app.post('/upload', upload.single('image'), async (req, res) => {
     const { name, price, description } = req.body;
     cartcollection.create({ name, price, description, image: req.file.filename })
-    .then(result => res.json(result))
-    .catch(err => res.json(err))
+        .then(result => res.json(result))
+        .catch(err => res.json(err))
     console.log(req.file)
-    
+
 })
 
-app.get('/getitems', async (req,res)=>{
+app.get('/getitems', async (req, res) => {
     cartcollection.find()
-    .then(items => res.json(items))
-    .catch(err => res.json(err))
+        .then(items => res.json(items))
+        .catch(err => res.json(err))
+})
+
+app.post('/register', (req, res) => {
+    const { name, email, address, phonenumber, password } = req.body;
+    CartRegister.create({name, email, address, phonenumber, password})
+        .then(result => res.json(result))
+        .catch(err => res.json(err))
 })
 
 app.listen(3001, () => {
