@@ -53,6 +53,21 @@ app.post('/register', (req, res) => {
         .catch(err => res.json(err))
 })
 
+app.post('/signin', (req,res)=>{
+    const {email,password} = req.body;
+
+    CartRegister.findOne({email:email, password:password})
+    .then(user=>{
+        if(user){ 
+            res.json("succsseful signin")
+        }
+        else{
+            res.json("signin error")
+        }
+    })
+    .catch(err=>res.json(err))
+})
+
 app.listen(3001, () => {
     console.log("Sever is Running");
 })
