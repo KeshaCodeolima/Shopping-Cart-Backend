@@ -37,12 +37,6 @@ app.post('/upload', upload.single('image'), async (req, res) => {
     cartcollection.create({ itemid, name, price, description, image: req.file.filename })
     .then(result => res.json(result))
     .catch(err => res.json(err))
-
-    const { name, price, description } = req.body;
-    cartcollection.create({ name, price, description, image: req.file.filename })
-        .then(result => res.json(result))
-        .catch(err => res.json(err))
- dev
     console.log(req.file)
 
 })
