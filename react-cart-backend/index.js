@@ -32,10 +32,17 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage })
 
 app.post('/upload', upload.single('image'), async (req, res) => {
+ AddingPage
+    const { itemid,name, price, description } = req.body;
+    cartcollection.create({ itemid, name, price, description, image: req.file.filename })
+    .then(result => res.json(result))
+    .catch(err => res.json(err))
+
     const { name, price, description } = req.body;
     cartcollection.create({ name, price, description, image: req.file.filename })
         .then(result => res.json(result))
         .catch(err => res.json(err))
+ dev
     console.log(req.file)
 
 })
