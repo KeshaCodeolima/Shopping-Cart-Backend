@@ -30,8 +30,8 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage })
 
 app.post('/upload', upload.single('image'), async (req, res) => {
-    const { id,name, price, description } = req.body;
-    cartcollection.create({ id, name, price, description, image: req.file.filename })
+    const { itemid,name, price, description } = req.body;
+    cartcollection.create({ itemid, name, price, description, image: req.file.filename })
     .then(result => res.json(result))
     .catch(err => res.json(err))
     console.log(req.file)
